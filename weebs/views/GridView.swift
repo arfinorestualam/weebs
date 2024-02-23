@@ -24,89 +24,86 @@ struct GridView: View {
     ]
     
     private var filter: [WeebWifes] {
-        search.isEmpty ? viewModel.wife : viewModel.wife.filter {
-            [$0.name, $0.anime].contains { $0.localizedCaseInsensitiveContains(search) }
+        guard !search.isEmpty else {
+            return viewModel.wife
+        }
+        return viewModel.wife.filter { wife in
+            wife.name.lowercased().contains(search.lowercased())
         }
     }
     
     var body: some View {
         NavigationStack {
             ScrollView {
-                if filter.isEmpty {
-                    ContentUnavailableView(
-                        "No results for '\(search)'",
-                        systemImage: "magnifyingglass"
-                    )
-                } else {
-                    LazyVGrid(columns: columns) {
-                        ForEach(filter) { it in
-                            Group {
-                                VStack(alignment: .leading) {
-                                    let url = URL(string: it.image)
-                                    AsyncImage(url: url) { phase in
-                                        switch phase {
-                                        case .empty:
-                                            waitView()
-                                            
-                                        case .success(let image):
-                                            image.resizable().scaledToFill()
-                                            
-                                        case .failure( _):
-                                            ZStack {
-                                                Rectangle()
-                                                    .foregroundStyle(Color.indigo)
-                                                Image(systemName: "photo.on.rectangle.angled")
-                                                    .font(.title)
-                                                    .foregroundStyle(.white)
-                                            }
-                                            
-                                        @unknown default:
-                                            fatalError()
+                LazyVGrid(columns: columns) {
+                    ForEach(filter, id: \.id) { it in
+                        Group {
+                            VStack(alignment: .leading) {
+                                let url = URL(string: it.image)
+                                AsyncImage(url: url) { phase in
+                                    switch phase {
+                                    case .empty:
+                                        waitView()
+                                        
+                                    case .success(let image):
+                                        image.resizable().scaledToFill()
+                                        
+                                    case .failure( _):
+                                        ZStack {
+                                            Rectangle()
+                                                .foregroundStyle(Color.indigo)
+                                            Image(systemName: "photo.on.rectangle.angled")
+                                                .font(.title)
+                                                .foregroundStyle(.white)
                                         }
-                                    }
-                                    .frame(width: 100, height: 100)
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                                    
-                                    Text(it.name)
-                                        .font(.system(.headline, design: .rounded, weight: .bold))
-                                        .lineLimit(2, reservesSpace: true)
-                                        .multilineTextAlignment(.leading)
-                                    Text(it.anime)
-                                        .font(.system(.caption, design: .rounded))
-                                        .lineLimit(1)
-                                }
-                            }
-                            .padding()
-                            .sheet(isPresented: $viewModel.showOption) {
-                                Group {
-                                    let defaultText = "Just watching anime"
-                                    
-                                    if let imageToShare = viewModel.shareImage {
-                                        ActivityView(activityItems: [defaultText, imageToShare])
-                                    } else {
-                                        ActivityView(activityItems: [defaultText])
+                                        
+                                    @unknown default:
+                                        fatalError()
                                     }
                                 }
-                                .presentationDetents([.medium, .large])
-                            }
-                            .contextMenu {
-                                Button {
-                                    Task {
-                                        await viewModel.showSheet(from: it.image)
-                                    }
-                                } label: {
-                                    Label("Share", systemImage: "square.and.arrow.up")
-                                }
+                                .frame(width: 100, height: 100)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
                                 
-                                Button {
-                                    delete = it
-                                    showAlert.toggle()
-                                } label: {
-                                    Label("Delete", systemImage: "trash")
+                                Text(it.name)
+                                    .font(.system(.headline, design: .rounded, weight: .bold))
+                                    .lineLimit(2, reservesSpace: true)
+                                    .multilineTextAlignment(.leading)
+                                Text(it.anime)
+                                    .font(.system(.caption, design: .rounded))
+                                    .lineLimit(1)
+                            }
+                        }
+                        .padding()
+                        .sheet(isPresented: $viewModel.showOption) {
+                            Group {
+                                let defaultText = "Just watching anime"
+                                
+                                if let imageToShare = viewModel.shareImage {
+                                    ActivityView(activityItems: [defaultText, imageToShare])
+                                } else {
+                                    ActivityView(activityItems: [defaultText])
                                 }
+                            }
+                            .presentationDetents([.medium, .large])
+                        }
+                        .contextMenu {
+                            Button {
+                                Task {
+                                    await viewModel.showSheet(from: it.image)
+                                }
+                            } label: {
+                                Label("Share", systemImage: "square.and.arrow.up")
+                            }
+                            
+                            Button {
+                                delete = it
+                                showAlert.toggle()
+                            } label: {
+                                Label("Delete", systemImage: "trash")
                             }
                         }
                     }
+                    
                 }
             }
             .navigationTitle("Waifu")
@@ -134,9 +131,9 @@ struct GridView: View {
     }
 }
 
-//#Preview {
-//    GridView()
-//}
+#Preview {
+    GridView()
+}
 
 @ViewBuilder
 func waitView() -> some View {
