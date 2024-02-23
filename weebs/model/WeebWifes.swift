@@ -13,9 +13,7 @@ struct WeebWifes: Identifiable, Decodable {
     let anime: String
     let name: String
     
-    init(image: String, anime: String, name: String) {
-        self.image = image
-        self.anime = anime
-        self.name = name
-    }
+    enum CodingKeys: String, CodingKey {
+            case image, anime, name
+        }
 }

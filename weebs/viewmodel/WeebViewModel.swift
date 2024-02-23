@@ -16,9 +16,7 @@ class WeebViewModel: ObservableObject {
     func fetch() async {
         do {
             let fetchWife = try await WeebApiSevice.shared.load()
-            DispatchQueue.main.async {
-                self.wife = fetchWife
-            }
+            self.wife = fetchWife
         } catch {
             print(error)
         }

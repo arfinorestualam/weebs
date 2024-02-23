@@ -19,10 +19,6 @@ class WeebApiSevice{
         
         let dataJson = try JSONDecoder().decode([WeebWifes].self, from: data)
         
-        let wifes = dataJson.map { wife in
-            WeebWifes(image: wife.image, anime: wife.anime, name: wife.name)
-        }
-        
-        return wifes
+        return dataJson
     }
 }
