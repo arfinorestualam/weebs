@@ -39,10 +39,10 @@ struct GridView: View {
                     )
                 } else {
                     LazyVGrid(columns: columns) {
-                        ForEach(filter) { wife in
+                        ForEach(filter) { it in
                             Group {
                                 VStack(alignment: .leading) {
-                                    let url = URL(string: wife.image)
+                                    let url = URL(string: it.image)
                                     AsyncImage(url: url) { phase in
                                         switch phase {
                                         case .empty:
@@ -67,11 +67,11 @@ struct GridView: View {
                                     .frame(width: 100, height: 100)
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
                                     
-                                    Text(wife.name)
+                                    Text(it.name)
                                         .font(.system(.headline, design: .rounded, weight: .bold))
                                         .lineLimit(2, reservesSpace: true)
                                         .multilineTextAlignment(.leading)
-                                    Text(wife.anime)
+                                    Text(it.anime)
                                         .font(.system(.caption, design: .rounded))
                                         .lineLimit(1)
                                 }
@@ -79,7 +79,7 @@ struct GridView: View {
                             .padding()
                             .sheet(isPresented: $viewModel.showOption) {
                                 Group {
-                                    let defaultText = "Just watching anime \(wife.name)"
+                                    let defaultText = "Just watching anime"
                                     
                                     if let imageToShare = viewModel.shareImage {
                                         ActivityView(activityItems: [defaultText, imageToShare])
@@ -92,14 +92,14 @@ struct GridView: View {
                             .contextMenu {
                                 Button {
                                     Task {
-                                        await viewModel.showSheet(from: wife.img)
+                                        await viewModel.showSheet(from: it.image)
                                     }
                                 } label: {
                                     Label("Share", systemImage: "square.and.arrow.up")
                                 }
                                 
                                 Button {
-                                    delete = wife
+                                    delete = it
                                     showAlert.toggle()
                                 } label: {
                                     Label("Delete", systemImage: "trash")
