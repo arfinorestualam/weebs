@@ -76,7 +76,7 @@ struct GridView: View {
                         .padding()
                         .sheet(isPresented: $viewModel.showOption) {
                             Group {
-                                let defaultText = "Just watching anime"
+                                let defaultText = "Just watching \(it.anime)"
                                 
                                 if let imageToShare = viewModel.shareImage {
                                     ActivityView(activityItems: [defaultText, imageToShare])
