@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		275A25372B88E14D00A1AF22 /* WeebWifes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275A25362B88E14D00A1AF22 /* WeebWifes.swift */; };
+		275A25392B88E4A400A1AF22 /* WeebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275A25382B88E4A400A1AF22 /* WeebViewModel.swift */; };
+		275A253D2B88E5F500A1AF22 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275A253C2B88E5F500A1AF22 /* Constants.swift */; };
+		275A25402B88E61700A1AF22 /* WeebApiServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275A253F2B88E61700A1AF22 /* WeebApiServices.swift */; };
+		275A25422B88E95900A1AF22 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275A25412B88E95900A1AF22 /* ActivityView.swift */; };
+		275A25442B88E97F00A1AF22 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275A25432B88E97F00A1AF22 /* GridView.swift */; };
 		DFB054832B79CE8D00248040 /* weebsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB054822B79CE8D00248040 /* weebsApp.swift */; };
 		DFB054852B79CE8D00248040 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB054842B79CE8D00248040 /* ContentView.swift */; };
 		DFB054872B79CE8F00248040 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFB054862B79CE8F00248040 /* Assets.xcassets */; };
@@ -14,6 +20,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		275A25362B88E14D00A1AF22 /* WeebWifes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeebWifes.swift; sourceTree = "<group>"; };
+		275A25382B88E4A400A1AF22 /* WeebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeebViewModel.swift; sourceTree = "<group>"; };
+		275A253C2B88E5F500A1AF22 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		275A253F2B88E61700A1AF22 /* WeebApiServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeebApiServices.swift; sourceTree = "<group>"; };
+		275A25412B88E95900A1AF22 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		275A25432B88E97F00A1AF22 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		DFB0547F2B79CE8D00248040 /* weebs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = weebs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFB054822B79CE8D00248040 /* weebsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weebsApp.swift; sourceTree = "<group>"; };
 		DFB054842B79CE8D00248040 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,6 +44,73 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		275A25302B88DFFE00A1AF22 /* app */ = {
+			isa = PBXGroup;
+			children = (
+				DFB054822B79CE8D00248040 /* weebsApp.swift */,
+			);
+			path = app;
+			sourceTree = "<group>";
+		};
+		275A25312B88E01500A1AF22 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				275A25362B88E14D00A1AF22 /* WeebWifes.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		275A25322B88E03200A1AF22 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				275A253E2B88E5FA00A1AF22 /* services */,
+				275A253A2B88E5DC00A1AF22 /* constants */,
+				DFB054862B79CE8F00248040 /* Assets.xcassets */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
+		275A25332B88E0FD00A1AF22 /* viewmodel */ = {
+			isa = PBXGroup;
+			children = (
+				275A25382B88E4A400A1AF22 /* WeebViewModel.swift */,
+			);
+			path = viewmodel;
+			sourceTree = "<group>";
+		};
+		275A25342B88E11700A1AF22 /* share */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = share;
+			sourceTree = "<group>";
+		};
+		275A25352B88E11F00A1AF22 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				DFB054842B79CE8D00248040 /* ContentView.swift */,
+				275A25412B88E95900A1AF22 /* ActivityView.swift */,
+				275A25432B88E97F00A1AF22 /* GridView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		275A253A2B88E5DC00A1AF22 /* constants */ = {
+			isa = PBXGroup;
+			children = (
+				275A253C2B88E5F500A1AF22 /* Constants.swift */,
+			);
+			path = constants;
+			sourceTree = "<group>";
+		};
+		275A253E2B88E5FA00A1AF22 /* services */ = {
+			isa = PBXGroup;
+			children = (
+				275A253F2B88E61700A1AF22 /* WeebApiServices.swift */,
+			);
+			path = services;
+			sourceTree = "<group>";
+		};
 		DFB054762B79CE8D00248040 = {
 			isa = PBXGroup;
 			children = (
@@ -51,9 +130,12 @@
 		DFB054812B79CE8D00248040 /* weebs */ = {
 			isa = PBXGroup;
 			children = (
-				DFB054822B79CE8D00248040 /* weebsApp.swift */,
-				DFB054842B79CE8D00248040 /* ContentView.swift */,
-				DFB054862B79CE8F00248040 /* Assets.xcassets */,
+				275A25352B88E11F00A1AF22 /* views */,
+				275A25342B88E11700A1AF22 /* share */,
+				275A25332B88E0FD00A1AF22 /* viewmodel */,
+				275A25322B88E03200A1AF22 /* resources */,
+				275A25312B88E01500A1AF22 /* model */,
+				275A25302B88DFFE00A1AF22 /* app */,
 				DFB054882B79CE8F00248040 /* Preview Content */,
 			);
 			path = weebs;
@@ -137,6 +219,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				275A253D2B88E5F500A1AF22 /* Constants.swift in Sources */,
+				275A25372B88E14D00A1AF22 /* WeebWifes.swift in Sources */,
+				275A25442B88E97F00A1AF22 /* GridView.swift in Sources */,
+				275A25392B88E4A400A1AF22 /* WeebViewModel.swift in Sources */,
+				275A25402B88E61700A1AF22 /* WeebApiServices.swift in Sources */,
+				275A25422B88E95900A1AF22 /* ActivityView.swift in Sources */,
 				DFB054852B79CE8D00248040 /* ContentView.swift in Sources */,
 				DFB054832B79CE8D00248040 /* weebsApp.swift in Sources */,
 			);
